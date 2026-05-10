@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>母亲节快乐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            overflow: hidden;
+            font-family: "Microsoft YaHei", "PingFang SC", "华文楷体", "KaiTi", sans-serif;
+            user-select: none;
+        }
+
+        /* 飘浮粒子 */
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-110vh) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        /* 整体包装，控制跳动 */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.1);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.15);
+            }
+            70% {
+                transform: scale(1);
+            }
+        }
+
+        /* ---------- 经典 CSS 爱心 ---------- */
+        .heart {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            /* 这个爱心完全由 ::before 和 ::after 生成 */
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 100px;
+            background: #ff4d6d;
+            border-radius: 60px 60px 0 0;
+            /* 上半部分圆角，下半部分直角 */
+            top: 0;
+            box-shadow: 0 10px 30px rgba(201, 24, 74, 0.35);
+        }
+
+        .heart::before {
+            left: 60px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+            /* 旋转轴心在左下角 */
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+            /* 旋转轴心在右下角 */
+        }
+        /* --------------------------------- */
+
+        /* 文字 */
+        .text {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #c9184a;
+            letter-spacing: 4px;
+            white-space: nowrap;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.7), 0 0 25px #ff758f;
+        }
+
+        .sub-text {
+            margin-top: 8px;
+            font-size: 1.2rem;
+            color: #c9184a;
+            opacity: 0.75;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="heart"></div>
+        <div class="text">母亲节快乐</div>
+        <div class="sub-text">❤  Happy Mother's Day  ❤</div>
+    </div>
+
+    <script>
+        // 生成背景飘浮小光点
+        const colors = ['#ffffff', '#ffe6ee', '#ffb3c6', '#ffd166'];
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 8 + 3;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.background = colors[~~(Math.random() * colors.length)];
+            p.style.animationDuration = Math.random() * 6 + 4 + 's';
+            p.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(p);
+        }
+    </script>
+</body>
+</html>
